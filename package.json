@@ -4,7 +4,8 @@
   "description": "A component used to collect reported error logs",
   "main": "src/index.ts",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "build": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/Apipost-Team/error-report/issues"
   },
-  "homepage": "https://github.com/Apipost-Team/error-report#readme"
+  "homepage": "https://github.com/Apipost-Team/error-report#readme",
+  "dependencies": {
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
+  }
 }
