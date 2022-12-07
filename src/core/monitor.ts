@@ -40,21 +40,16 @@ export interface IRrwebOption {
 
 export type IData = Record<string | number | symbol, unknown>;
 
-export interface IHookBeforeSend {
-  (data: ErrorCombine, eventName: ErrorCombine["errorType"]): ErrorCombine;
-}
-
 export interface ReportOptions {
   url: string;
   method?: string;
   contentType?: string;
-  beforeSend?: IHookBeforeSend;
 }
 
 export interface ITrackerOptions {
   error: IErrorOptions;
   data: IData;
-  report: ReportOptions;
+  report: Partial<ReportOptions>;
 }
 
 export type PlainObject = Record<string | number | symbol, unknown>;
@@ -68,12 +63,11 @@ export const defaultTrackerOptions =  {
     url: "",
     method: "POST",
     contentType: "application/json",
-    beforeSend: (data: ErrorCombine) => data
   },
   data: {},
   error: {
     watch: true,
-    repeat: 5,
+    repeat: 2,
     delay: 1000
   },
 };

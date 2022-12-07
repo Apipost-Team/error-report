@@ -67,19 +67,15 @@ interface IRrwebOption {
     delay: number;
 }
 type IData = Record<string | number | symbol, unknown>;
-interface IHookBeforeSend {
-    (data: ErrorCombine, eventName: ErrorCombine["errorType"]): ErrorCombine;
-}
 interface ReportOptions {
     url: string;
-    method: string;
-    contentType: string;
-    beforeSend: IHookBeforeSend;
+    method?: string;
+    contentType?: string;
 }
 interface ITrackerOptions {
     error: IErrorOptions;
     data: IData;
-    report: ReportOptions;
+    report: Partial<ReportOptions>;
 }
 type PlainObject = Record<string | number | symbol, unknown>;
 type AppVersion = {
@@ -92,7 +88,6 @@ declare const defaultTrackerOptions: {
         url: string;
         method: string;
         contentType: string;
-        beforeSend: (data: ErrorCombine) => ErrorCombine;
     };
     data: {};
     error: {
@@ -148,4 +143,4 @@ declare class BaseObserver {
     safeEmitError(cacheKey: string, errorType: string, errorObj: IError | BaseError | IUnHandleRejectionError): void;
 }
 
-export { AppVersion, BaseError, BaseObserver, ConsoleType, ErrorCombine, ErrorList, ErrorObserver, ErrorType, EventName, ICacheError, IData, IError, IErrorOptions, IHookBeforeSend, IHttpOptions, IReportParams, IRrwebOption, ITrackerOptions, IUnHandleRejectionError, Monitor, PlainObject, ReportData, ReportOptions, Reporter, TrackerEvents, defaultTrackerOptions };
+export { AppVersion, BaseError, BaseObserver, ConsoleType, ErrorCombine, ErrorList, ErrorObserver, ErrorType, EventName, ICacheError, IData, IError, IErrorOptions, IHttpOptions, IReportParams, IRrwebOption, ITrackerOptions, IUnHandleRejectionError, Monitor, PlainObject, ReportData, ReportOptions, Reporter, TrackerEvents, defaultTrackerOptions };

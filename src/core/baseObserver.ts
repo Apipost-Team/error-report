@@ -35,7 +35,7 @@ export class BaseObserver {
     if (typeof this.cacheError[cacheKey] !== "number") {
       this.cacheError[cacheKey] = 0;
     } else {
-      this.cacheError[cacheKey] = 1;
+      this.cacheError[cacheKey] += 1;
     }
 
     const repeat = (this.options.error as IErrorOptions).repeat;

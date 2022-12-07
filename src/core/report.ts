@@ -53,19 +53,7 @@ export class Reporter {
   }
 
   reportError(error: ErrorCombine) {
-    const { contentType, method, beforeSend } = this._options.report;
-
-    if (typeof beforeSend === "function") {
-      const handledError = beforeSend.call(this, error, error.errorType);
-
-      if (isObject(handledError)) {
-        error = handledError;
-      } else {
-        console.warn(
-          `If you want to overite report data, please return object in [beforeSend] hook`
-        );
-      }
-    }
+    const { contentType, method } = this._options.report;
 
     const pureData = this.getPureReportData(error);
     const isHttpGet = this._isMatchMethod(method, "get");
