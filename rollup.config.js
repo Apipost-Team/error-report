@@ -11,7 +11,7 @@ export default [{
 }, {
   input: './src/index.ts',
   output: {
-    file: './dist/index.d.js',
+    file: './dist/index.d.ts',
     format: 'esm'
   },
   plugins: [commonjs(),typescript(), dts()],
