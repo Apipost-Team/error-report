@@ -3,7 +3,7 @@ import dts from 'rollup-plugin-dts';
 import ts from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from "@rollup/plugin-node-resolve";
-
+import { terser } from 'rollup-plugin-terser';
 export default [
   {
     input: './src/core/index.ts',
@@ -26,7 +26,9 @@ export default [
         format: 'cjs'
       },
     ],
-    plugins: [ts(), commonjs(), resolve()]
+    plugins: [ts(), commonjs(), resolve(), terser({
+      compress: true,
+    })]
   },
   {
     input: './src/core/index.ts',

@@ -46,9 +46,9 @@ export interface IHookBeforeSend {
 
 export interface ReportOptions {
   url: string;
-  method: string;
-  contentType: string;
-  beforeSend: IHookBeforeSend;
+  method?: string;
+  contentType?: string;
+  beforeSend?: IHookBeforeSend;
 }
 
 export interface ITrackerOptions {

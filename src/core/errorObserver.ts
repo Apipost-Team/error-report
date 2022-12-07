@@ -78,8 +78,6 @@ export class ErrorObserver extends BaseObserver {
       const error = e.reason;
       const errMsg = error instanceof Error ? error.message : error;
 
-      console.log('promise error', e);
-
       const errorObj: IUnHandleRejectionError = {
         msg: errMsg,
         errorType: ErrorType.unHandleRejectionError,

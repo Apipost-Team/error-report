@@ -16,7 +16,6 @@ export class Reporter {
   private _options: ITrackerOptions;
 
   constructor(options: ITrackerOptions) {
-    console.log(options, '111111111')
     this._options = options;
   }
 
