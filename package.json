@@ -1,0 +1,23 @@
+{
+  "name": "apipost-error-report",
+  "version": "0.0.1",
+  "description": "A component used to collect reported error logs",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apipost-Team/error-report.git"
+  },
+  "keywords": [
+    "apipost",
+    "error-report"
+  ],
+  "author": "Apipost-Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Apipost-Team/error-report/issues"
+  },
+  "homepage": "https://github.com/Apipost-Team/error-report#readme"
+}
