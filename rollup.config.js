@@ -12,14 +12,14 @@ export default [
       {
         file: path.resolve(__dirname, './dist/index.js'),
         format: 'umd',
-        name: 'LiMonitor',
+        name: 'Monitor',
         globals: {
           "mobile-detect": "MobileDetect"
         }
       },
       {
         file: path.resolve(__dirname, './dist/index.esm.js'),
-        format: 'es'
+        format: 'esm'
       },
       {
         file: path.resolve(__dirname, './dist/index.cjs.js'),

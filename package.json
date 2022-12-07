@@ -1,6 +1,6 @@
 {
-  "name": "error-report",
-  "version": "1.0.0",
+  "name": "apipost-error-report",
+  "version": "1.0.1",
   "description": "错误监控",
   "main": "index.js",
   "scripts": {
