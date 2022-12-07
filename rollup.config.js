@@ -1,18 +1,44 @@
-import commonjs from 'rollup-plugin-commonjs'
-import dts from "rollup-plugin-dts";
-import typescript from "rollup-plugin-typescript";
-export default [{
-  input: './src/index.ts',
-  output: {
-    file: './dist/index.js',
-    format: 'esm'
+import path from 'path';
+import dts from 'rollup-plugin-dts';
+import ts from '@rollup/plugin-typescript';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from "@rollup/plugin-node-resolve";
+
+export default [
+  {
+    input: './src/core/index.ts',
+    external: [],
+    output: [
+      {
+        file: path.resolve(__dirname, './dist/index.js'),
+        format: 'umd',
+        name: 'LiMonitor',
+        globals: {
+          "mobile-detect": "MobileDetect"
+        }
+      },
+      {
+        file: path.resolve(__dirname, './dist/index.esm.js'),
+        format: 'es'
+      },
+      {
+        file: path.resolve(__dirname, './dist/index.cjs.js'),
+        format: 'cjs'
+      },
+    ],
+    plugins: [ts(), commonjs(), resolve()]
   },
-  plugins: [commonjs(),typescript()],
-}, {
-  input: './src/index.ts',
-  output: {
-    file: './dist/index.d.ts',
-    format: 'esm'
-  },
-  plugins: [commonjs(),typescript(), dts()],
-}]
+  {
+    input: './src/core/index.ts',
+    output: 
+    {
+      file: path.resolve(__dirname, './dist/index.d.ts'),
+      format: 'es'
+    },
+    plugins: [
+      dts(),
+      commonjs(),
+      resolve()
+    ]
+  }
+];

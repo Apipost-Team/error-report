@@ -1,31 +1,30 @@
 {
-  "name": "apipost-error-report",
-  "version": "0.0.1",
-  "description": "A component used to collect reported error logs",
-  "main": "src/index.ts",
+  "name": "error-report",
+  "version": "1.0.0",
+  "description": "错误监控",
+  "main": "index.js",
   "scripts": {
-    "test": "npm run test",
-    "build": "rollup -c rollup.config.js"
+    "build": "rollup -c"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Apipost-Team/error-report.git"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.79.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-typescript2": "^0.34.0",
+    "typescript": "^4.8.3"
   },
-  "keywords": [
-    "apipost",
-    "error-report"
-  ],
-  "author": "Apipost-Team",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Apipost-Team/error-report/issues"
-  },
-  "homepage": "https://github.com/Apipost-Team/error-report#readme",
   "dependencies": {
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-dts": "^5.0.0",
-    "rollup-plugin-typescript": "^1.0.1",
-    "tslib": "^2.4.1",
-    "typescript": "^4.9.3"
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "deepcopy": "^2.1.0",
+    "deepmerge": "^4.2.2",
+    "error-stack-parser": "^2.1.4",
+    "events": "^3.3.0",
+    "json-stringify-safe": "^5.0.1",
+    "mobile-detect": "^1.4.5",
+    "object-to-formdata": "^4.4.2"
   }
 }

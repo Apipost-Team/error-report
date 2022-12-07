@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button class="btn">+1</button>
+  <!-- <script src="../src//index.js"></script> -->
+  <script src="../dist/index.js"></script>
+  <script>
+    const monitor = LiMonitor.Monitor.init({
+      report: {
+        url: 'http://localhost:9898/reportError'
+      }
+    }, {
+      appVersion: '11',
+      gitHash: '1212'
+    });
+
+    monitor.on('event', (eventName, data) => {
+      console.log(eventName, data)
+    });
+
+    const btn = document.querySelector('.btn');
+
+    btn.addEventListener('click', () => {
+
+      Promise.reject('danceli')
+    })
+
+  </script>
+
+</body>
+</html>
