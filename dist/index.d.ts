@@ -21,6 +21,8 @@ interface BaseError {
     errorType: ErrorType;
     url?: string | undefined;
     path?: string | undefined;
+    hash: number;
+    time: number;
 }
 
 declare class ErrorObserver extends BaseObserver {
@@ -125,9 +127,13 @@ interface IError extends BaseError {
     line: number | undefined;
     column: number | undefined;
     stackTrace: string;
+    hash: number;
+    time: number;
 }
 interface IUnHandleRejectionError extends BaseError {
     msg: string;
+    hash: number;
+    time: number;
 }
 interface ICacheError {
     [errorMsg: string]: number;

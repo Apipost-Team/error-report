@@ -1,5 +1,7 @@
 import ErrorStackParser from "error-stack-parser";
 import stringify from 'json-stringify-safe';
+
+import CRC32 from '../utils/crc32';
 import { BaseError, ErrorType, TrackerEvents } from "../types";
 import { BaseObserver, IError, IUnHandleRejectionError } from "./baseObserver";
 import { ITrackerOptions } from "./monitor";
@@ -18,6 +20,8 @@ export class ErrorObserver extends BaseObserver {
     const oldUnHandleRejection = window.onunhandledrejection;
     const self = this;
 
+
+
     window.onerror = function(...args) {
       if (oldOnError) {
         oldOnError(...args);
@@ -27,13 +31,17 @@ export class ErrorObserver extends BaseObserver {
       const msgText = typeof msg === 'string' ? msg : msg.type;
       const stackTrace = error ? ErrorStackParser.parse(error) : [];
 
+      const time = Date.now();
+
       const errorObj: IError = {
         msg: msgText,
+        time,
         line,
         url,
         column,
         stackTrace: stringify(stackTrace),
-        errorType: ErrorType.jsError
+        errorType: ErrorType.jsError,
+        hash: CRC32.str(msgText + time.toString())
       }
       self.safeEmitError(msgText, TrackerEvents.jsError, errorObj);
     }
@@ -49,6 +57,8 @@ export class ErrorObserver extends BaseObserver {
 
       let url: string;
 
+      const time = Date.now();
+
       // 判断是否是资源的标签类的错误
       if (target instanceof HTMLLinkElement) {
         url = target.href;
@@ -60,6 +70,8 @@ export class ErrorObserver extends BaseObserver {
       const errorObj: BaseError = {
         url,
         errorType: errorType,
+        hash: CRC32.str(url + time.toString()),
+        time
       };
 
       self.safeEmitError(
@@ -75,12 +87,16 @@ export class ErrorObserver extends BaseObserver {
         oldUnHandleRejection.call(window, e);
       }
 
+      const time = Date.now();
+
       const error = e.reason;
       const errMsg = error instanceof Error ? error.message : error;
 
       const errorObj: IUnHandleRejectionError = {
         msg: errMsg,
         errorType: ErrorType.unHandleRejectionError,
+        hash: CRC32.str(errMsg + time.toString()),
+        time
       };
 
       self.safeEmitError(errMsg, TrackerEvents.unHandleRejection, errorObj);

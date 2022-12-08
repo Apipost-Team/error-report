@@ -138,18 +138,9 @@ export class Monitor {
   }
 
   getAppVesionInfo(appVersion: Partial<AppVersion>) {
-    if (!appVersion) {
-      this.configData({
-        appVersionInfo: {
-          appVersion: '',
-          gitHash: ''
-        }
-      });
-    };
-
     this.configData({
-      appVersionInfo: appVersion
-    });
+      ...appVersion
+    })
   }
 
   configData(key: string, value: unknown, deepmerge?: boolean): Monitor;
