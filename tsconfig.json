@@ -1,34 +1,21 @@
 {
-    "compilerOptions": {
-      "jsx": "react-jsx",
-      "experimentalDecorators": true,
-      "skipLibCheck": true,
-      "target": "ESNEXT" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
-      "module": "es2020" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
-      "allowJs": false /* Allow javascript files to be compiled. */,
-      "strict": false /* Enable all strict type-checking options. */,
-      "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
-      "types": [],
-      "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
-      "moduleResolution": "node",
-      "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true,
-      "strictNullChecks": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "noUnusedLocals": true,
-      "allowSyntheticDefaultImports": true,
-      "resolveJsonModule": true,
-      "paths": {}
-    },
-    "awesomeTypescriptLoaderOptions": {
-      "useWebpackText": true,
-      "useTranspileModule": true,
-      "doTypeCheck": true,
-      "forkChecker": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "public", "scripts"],
+  "compilerOptions": {
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": ["es6", "dom", "ES2017"],  
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,                                      /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "module": "ES6",          
+    "moduleResolution": "node",                      /* Specify what module code is generated. */
+    "resolveJsonModule": true,                        /* Enable importing .json files. */
+    // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "strict": false,     
+    "strictPropertyInitialization": false,                                 /* Enable all strict type-checking options. */
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": false,
+    "noImplicitThis": false,                              /* Skip type checking all .d.ts files. */
+    "importHelpers": true,
+    // "declarationMap": true, // 为声明文件生成sourceMap
   }
-  
+}
