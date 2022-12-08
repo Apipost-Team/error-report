@@ -41,7 +41,7 @@ export class ErrorObserver extends BaseObserver {
         column,
         stackTrace: stringify(stackTrace),
         errorType: ErrorType.jsError,
-        hash: CRC32.str(msgText + time.toString())
+        hash: CRC32.str(ErrorType.jsError + (time / 1000).toString())
       }
       self.safeEmitError(msgText, TrackerEvents.jsError, errorObj);
     }
@@ -70,7 +70,7 @@ export class ErrorObserver extends BaseObserver {
       const errorObj: BaseError = {
         url,
         errorType: errorType,
-        hash: CRC32.str(url + time.toString()),
+        hash: CRC32.str(errorType + (time / 1000).toString()),
         time
       };
 
@@ -95,7 +95,7 @@ export class ErrorObserver extends BaseObserver {
       const errorObj: IUnHandleRejectionError = {
         msg: errMsg,
         errorType: ErrorType.unHandleRejectionError,
-        hash: CRC32.str(errMsg + time.toString()),
+        hash: CRC32.str(ErrorType.unHandleRejectionError + (time / 1000).toString()),
         time
       };
 
