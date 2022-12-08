@@ -41,3 +41,12 @@ export function getDeviceInfo(): IDeviceInfo {
     screenH: document.documentElement.clientHeight || document.body.clientHeight
   };
 }
+
+
+export function getCurDate(): string {
+  const date = new Date();
+  const year = date.getFullYear(),
+        month = date.getMonth() + 1,
+        day = date.getDate();
+  return `${year}-${month}-${day}`;
+}
