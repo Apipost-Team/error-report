@@ -13,7 +13,7 @@ A component used to collect reported error logs
 
   import { Monitor } from 'apipost-error-report';
 
-  const monitor = Monitor.Monitor.init({
+  const monitor = Monitor.init({
     report: {
       url: 'http://localhost:9898/reportError',      // 错误上报url
       method: 'post',                         

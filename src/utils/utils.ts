@@ -24,6 +24,7 @@ export interface IDeviceInfo {
   screenW: number;
   screenH: number;
   dpr: number;
+  os: string;
 }
 
 export function getDeviceInfo(): IDeviceInfo {
@@ -36,6 +37,7 @@ export function getDeviceInfo(): IDeviceInfo {
     userAgent: md.userAgent(),
     isPhone: md.is("iPhone"),
     version: md.version("Webkit"),
+    os: md.os(),
     dpr: window.devicePixelRatio,
     screenW: document.documentElement.clientWidth || document.body.clientWidth,
     screenH: document.documentElement.clientHeight || document.body.clientHeight

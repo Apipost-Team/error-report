@@ -22,14 +22,24 @@ export class Emitter extends EventEmitter {
       data.beforeEmit.call(this, data);
       Reflect.deleteProperty(data, "beforeEmit");
     }
-
     super.emit(TrackerEvents.event, event, data, ...rest);
     return super.emit(event, data, ...rest);
   }
 
   private decorateData(data: any) {
-    data.time = Date.now();
     data.globalData = this.globalData;
+    data.appVersion = this.globalData.appVersion || '';
+    data.gitHash = this.globalData.gitHash || '';
+
+    Reflect.deleteProperty(this.globalData, "appVersion");
+    Reflect.deleteProperty(this.globalData, "gitHash");
+
+    Reflect.deleteProperty(data.globalData, "appVersion");
+    Reflect.deleteProperty(data.globalData, "gitHash");
+
+    data.os = this.globalData._deviceInfo.os;
+    Reflect.deleteProperty(data.globalData._deviceInfo, "os");
+    Reflect.deleteProperty(this.globalData._deviceInfo, "os");
 
     if (!data.title) {
       data.title = document.title;

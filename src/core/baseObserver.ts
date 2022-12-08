@@ -9,10 +9,14 @@ export interface IError extends BaseError {
   line: number | undefined;
   column: number | undefined;
   stackTrace: string;
+  hash: number
+  time: number
 }
 
 export interface IUnHandleRejectionError extends BaseError {
   msg: string;
+  hash: number;
+  time: number;
 }
 
 export interface ICacheError {
@@ -29,11 +33,16 @@ export class BaseObserver {
     if (localCacheError) {
       const cacheError: ICacheError = JSON.parse(localCacheError);
       const keys = Object.keys(cacheError);
-      if (keys.includes(getCurDate())) {
+
+      const needClearCache = keys.find(item => item.includes(getCurDate()));
+
+      if (!needClearCache) {
         this.cacheError = {};
+        localStorage.removeItem("cacheError");
       } else {
         this.cacheError = cacheError;
       }
+
     } else {
       this.cacheError = {};
     }
@@ -46,9 +55,7 @@ export class BaseObserver {
   */
   safeEmitError(cacheKey: string, errorType: string, errorObj:  IError | BaseError | IUnHandleRejectionError) {
     const date = getCurDate();
-
-
-
+    
     if (typeof this.cacheError[cacheKey + date] !== "number") {
       this.cacheError[cacheKey + date] = 1;
     } else {
@@ -56,6 +63,8 @@ export class BaseObserver {
     }
     
     const repeat = (this.options.error as IErrorOptions).repeat;
+
+
     if (this.cacheError[cacheKey + date] < repeat) {
       myEmitter.emitWithGlobalData(errorType, errorObj);
       localStorage.setItem('cacheError', JSON.stringify(this.cacheError));
