@@ -1,6 +1,6 @@
 import ErrorStackParser from "error-stack-parser";
 import stringify from 'json-stringify-safe';
-import hash from 'crypto-js';
+import MD5 from 'md5';
 // import CRC32 from '../utils/crc32';
 import { BaseError, ErrorType, TrackerEvents } from "../types";
 import { BaseObserver, IError, IUnHandleRejectionError } from "./baseObserver";
@@ -41,7 +41,7 @@ export class ErrorObserver extends BaseObserver {
         column,
         stackTrace: stringify(stackTrace),
         errorType: ErrorType.jsError,
-        hash: hash.MD5(ErrorType.jsError + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex)
+        hash: MD5(ErrorType.jsError + (Math.floor(time / 1000)).toString())
       }
       self.safeEmitError(msgText, TrackerEvents.jsError, errorObj);
     }
@@ -70,7 +70,7 @@ export class ErrorObserver extends BaseObserver {
       const errorObj: BaseError = {
         url,
         errorType: errorType,
-        hash: hash.MD5(errorType + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex),
+        hash: MD5(errorType + (Math.floor(time / 1000)).toString()),
         time: Math.floor(time / 1000)
       };
 
@@ -88,14 +88,13 @@ export class ErrorObserver extends BaseObserver {
       }
 
       const time = Date.now();
-      console.log(time)
       const error = e.reason;
       const errMsg = error instanceof Error ? error.message : error;
 
       const errorObj: IUnHandleRejectionError = {
         msg: errMsg,
         errorType: ErrorType.unHandleRejectionError,
-        hash: hash.MD5(ErrorType.unHandleRejectionError + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex),
+        hash: MD5(ErrorType.unHandleRejectionError + (Math.floor(time / 1000)).toString()),
         time: Math.floor(time / 1000)
       };
 
