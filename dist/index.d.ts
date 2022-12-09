@@ -21,7 +21,7 @@ interface BaseError {
     errorType: ErrorType;
     url?: string | undefined;
     path?: string | undefined;
-    hash: number;
+    hash: string;
     time: number;
 }
 
@@ -127,12 +127,12 @@ interface IError extends BaseError {
     line: number | undefined;
     column: number | undefined;
     stackTrace: string;
-    hash: number;
+    hash: string;
     time: number;
 }
 interface IUnHandleRejectionError extends BaseError {
     msg: string;
-    hash: number;
+    hash: string;
     time: number;
 }
 interface ICacheError {

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>上报</button>
+  <script src="./dist/index.js"></script>
+  <script>
+
+  const monitor = Monitor.Monitor.init({
+    report: {
+      url: 'https://error-report.apipost.cc/api/apipost/abnormal',
+      method: 'post',
+      contentType: 'application/json'
+    }
+  }, {
+    appVersion: '1',
+    gitHash: 'githush'
+  });
+
+  monitor.on('event', (errorName, errorInfo) => {
+    monitor.reporter.reportError(errorInfo)
+  });
+
+  document.querySelector('button').addEventListener('click', () => {
+    console.log(a2)
+  })
+  </script>
+</body>
+</html>

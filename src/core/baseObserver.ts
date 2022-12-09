@@ -9,13 +9,13 @@ export interface IError extends BaseError {
   line: number | undefined;
   column: number | undefined;
   stackTrace: string;
-  hash: number
+  hash: string
   time: number
 }
 
 export interface IUnHandleRejectionError extends BaseError {
   msg: string;
-  hash: number;
+  hash: string;
   time: number;
 }
 
