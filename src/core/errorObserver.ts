@@ -1,6 +1,6 @@
 import ErrorStackParser from "error-stack-parser";
 import stringify from 'json-stringify-safe';
-import hash from 'crypto-js/';
+import hash from 'crypto-js';
 // import CRC32 from '../utils/crc32';
 import { BaseError, ErrorType, TrackerEvents } from "../types";
 import { BaseObserver, IError, IUnHandleRejectionError } from "./baseObserver";
