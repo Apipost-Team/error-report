@@ -41,7 +41,7 @@ export class Emitter extends EventEmitter {
     Reflect.deleteProperty(data.globalData._deviceInfo, "os");
     Reflect.deleteProperty(this.globalData._deviceInfo, "os");
 
-    data.hash = md5(md5(this.globalData.gitHash + data.errorType) + Math.floor(data.time / 1000));
+    data.hash = md5(md5(data.gitHash + data.errorType) + data.time)
 
     if (!data.title) {
       data.title = document.title;
