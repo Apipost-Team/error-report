@@ -1,6 +1,6 @@
 {
   "name": "apipost-error-report",
-  "version": "1.0.8",
+  "version": "1.1.1",
   "description": "错误监控",
   "main": "dist/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^8.5.0",
+    "crypto-js": "^4.1.1",
     "deepcopy": "^2.1.0",
     "deepmerge": "^4.2.2",
     "error-stack-parser": "^2.1.4",

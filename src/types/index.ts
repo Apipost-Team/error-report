@@ -28,6 +28,6 @@ export interface BaseError {
   errorType: ErrorType;
   url?: string | undefined;
   path?: string | undefined;
-  hash: number;
+  hash: string;
   time: number;
 }

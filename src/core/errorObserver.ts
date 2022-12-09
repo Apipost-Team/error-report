@@ -1,7 +1,7 @@
 import ErrorStackParser from "error-stack-parser";
 import stringify from 'json-stringify-safe';
-
-import CRC32 from '../utils/crc32';
+import hash from 'crypto-js/';
+// import CRC32 from '../utils/crc32';
 import { BaseError, ErrorType, TrackerEvents } from "../types";
 import { BaseObserver, IError, IUnHandleRejectionError } from "./baseObserver";
 import { ITrackerOptions } from "./monitor";
@@ -35,13 +35,13 @@ export class ErrorObserver extends BaseObserver {
 
       const errorObj: IError = {
         msg: msgText,
-        time,
+        time: Math.floor(time / 1000),
         line,
         url,
         column,
         stackTrace: stringify(stackTrace),
         errorType: ErrorType.jsError,
-        hash: CRC32.str(msgText + time.toString())
+        hash: hash.MD5(ErrorType.jsError + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex)
       }
       self.safeEmitError(msgText, TrackerEvents.jsError, errorObj);
     }
@@ -70,8 +70,8 @@ export class ErrorObserver extends BaseObserver {
       const errorObj: BaseError = {
         url,
         errorType: errorType,
-        hash: CRC32.str(url + time.toString()),
-        time
+        hash: hash.MD5(errorType + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex),
+        time: Math.floor(time / 1000)
       };
 
       self.safeEmitError(
@@ -88,15 +88,15 @@ export class ErrorObserver extends BaseObserver {
       }
 
       const time = Date.now();
-
+      console.log(time)
       const error = e.reason;
       const errMsg = error instanceof Error ? error.message : error;
 
       const errorObj: IUnHandleRejectionError = {
         msg: errMsg,
         errorType: ErrorType.unHandleRejectionError,
-        hash: CRC32.str(errMsg + time.toString()),
-        time
+        hash: hash.MD5(ErrorType.unHandleRejectionError + (Math.floor(time / 1000)).toString()).toString(hash.enc.Hex),
+        time: Math.floor(time / 1000)
       };
 
       self.safeEmitError(errMsg, TrackerEvents.unHandleRejection, errorObj);
