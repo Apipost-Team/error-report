@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import { TrackerEvents } from '../types';
 import { getPageUrl, isObject } from '../utils/utils';
-
+import md5 from 'md5';
 
 export class Emitter extends EventEmitter {
   private globalData: any;
@@ -40,6 +40,8 @@ export class Emitter extends EventEmitter {
     data.os = this.globalData._deviceInfo.os;
     Reflect.deleteProperty(data.globalData._deviceInfo, "os");
     Reflect.deleteProperty(this.globalData._deviceInfo, "os");
+
+    data.hash = md5(md5(this.globalData.gitHash + data.errorType) + Math.floor(data.time / 1000));
 
     if (!data.title) {
       data.title = document.title;

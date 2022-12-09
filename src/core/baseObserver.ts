@@ -64,7 +64,6 @@ export class BaseObserver {
     
     const repeat = (this.options.error as IErrorOptions).repeat;
 
-
     if (this.cacheError[cacheKey + date] < repeat) {
       myEmitter.emitWithGlobalData(errorType, errorObj);
       localStorage.setItem('cacheError', JSON.stringify(this.cacheError));

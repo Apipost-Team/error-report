@@ -7,7 +7,19 @@ A component used to collect reported error logs
   npm i apipost-error-report -S
 ```
 
-文件入口使用
+#### 
+
+文件入口使用：
+
+webpack.config.js添加
+
+{
+  resolve: {
+    fallback: {
+      crypto: false
+    }
+  }
+}
 
 ```javsScript
 
